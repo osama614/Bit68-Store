@@ -99,12 +99,12 @@ to start up your containers
 
 now I supposed that you can find the app running on [localhost|http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 then, 
-go to your app working directory on the container to run any commend that you need by run:
+go to your app working directory on the container `/django` to run any commend that you need by run:
 
 ```bash
 docker exec -it django_app_container bash
 ```
-now you can migrate your database from `/Bit68-Store` directory by run:
+now you can migrate your database from `/django` directory by run:
 ```bash
 python manage.py migrate
 or
