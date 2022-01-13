@@ -12,11 +12,6 @@ Our tech stack will include:
 * **Django Rest Framework** for creating and managing APIs 
 * **Simple JWT** as our Authanticaton and Authorization third party packege using JWT
   
-##Overall:
-* Models are located in the `models.py`.
-* Controllers are also located in `app.py`.
-* The web frontend is located in `templates/`, which builds static assets deployed to the web server at `static/`.
-* Web forms for creating data are located in `form.py`
 
 ## Getting Started
 
@@ -34,7 +29,7 @@ We recommend working within a virtual environment whenever using Python for proj
 
 #### PIP Dependencies
 
-Once you have your virtual environment setup and running, install dependencies by naviging to the `/casting_agency_app` directory and running:
+Once you have your virtual environment setup and running, install dependencies by naviging to the `/Bit68-Store` directory and running:
 
 ```bash
 pip install -r requirements.txt
@@ -180,7 +175,7 @@ to logged out a logged in user
 ### POST  /products/
  - General:
 
-to logged out a logged in user
+ let any logged in user add any product to the DB.
 
 - Sample: ```curl http://127.0.0.1:8000/api/v1/products/ -X POST -H "Content-Type: application/json" 
     -H "HTTP_AUTHORIZATION : Bearer $ACCESS_TOKEN" -d {"name":"Infinix gy", "price" : 20899} ```
