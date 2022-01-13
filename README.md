@@ -11,9 +11,6 @@ Our tech stack will include:
 * **Python3** and **Django** as our server language and server framework
 * **Django Rest Framework** for creating and managing APIs 
 * **Simple JWT** as our Authanticaton and Authorization third party packege using JWT
-
-### Main Files: Project Structure
-
   
 ##Overall:
 * Models are located in the `models.py`.
@@ -115,3 +112,142 @@ python manage.py test
 or
 ./manage.py test <app_name> to test each app alone.
 ```
+## API Reference
+
+### Getting Started:
+
+- Base URL: At present this app can only be run locally and is not hosted as a base URL. 
+           The backend app is hosted at the default, http://127.0.0.1:5000/, 
+           which is set as a proxy in the frontend configuration.
+## Endpoints
+
+### POST /signup/
+ - General:
+
+Register a new user to the Database.
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/auth/users/signup/ -X POST -H "Content-Type: application/json" 
+    -d {"username":"myname","email":"myemail@gmail.com", "password" : "mypassword"}```
+   
+                 {
+                    "user_data": {
+                        "id": 1,
+                        "username": "myname",
+                        "email": "myemail@gmail.com"
+                    },
+                    "access_token":  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQyMTc2MTkyLCJpYXQiOjE2NDIwODk3OTIsImp0aSI6IjAwMWY2YzBkYjQ2YzQ3YTNiNTMxZmQ4Y2E1MzdiOTlhIiwidXNlcl9pZCI6MX0.FToS3Jh7SfXEsYKAXQDey2H4DLuNoBzXNLFDGtPTrB0",
+                    "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY0MjE3NjE5MiwiaWF0IjoxNjQyMDg5NzkyLCJqdGkiOiJmYmRjZDMxY2Y0MDk0MmNjYWRlZmI0YjY0N2IzYTFmMSIsInVzZXJfaWQiOjF9.JfTcXSM_SSG0tBBSE75RabrKJ1f3mdQfl5HbUhB-jfY"
+}
+
+### POST  /login/
+ - General:
+
+log an exist user to the App.
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/auth/users/login/ -X POST -H "Content-Type: application/json" 
+    -d {"username":"myname", "password" : "mypassword"}```
+   
+                 {
+                   
+                    "access":  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQyMTc2MTkyLCJpYXQiOjE2NDIwODk3OTIsImp0aSI6IjAwMWY2YzBkYjQ2YzQ3YTNiNTMxZmQ4Y2E1MzdiOTlhIiwidXNlcl9pZCI6MX0.FToS3Jh7SfXEsYKAXQDey2H4DLuNoBzXNLFDGtPTrB0",
+                    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY0MjE3NjE5MiwiaWF0IjoxNjQyMDg5NzkyLCJqdGkiOiJmYmRjZDMxY2Y0MDk0MmNjYWRlZmI0YjY0N2IzYTFmMSIsInVzZXJfaWQiOjF9.JfTcXSM_SSG0tBBSE75RabrKJ1f3mdQfl5HbUhB-jfY"
+}
+### POST  /refresh/
+ - General:
+
+Generate an new access token for the logged in users.
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/auth/users/refresh/ -X POST -H "Content-Type: application/json" 
+    -d {"refresh":"$REFRESH_TOKN"}```
+   
+                 {
+                   
+                    "access":  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQyMTc2MTkyLCJpYXQiOjE2NDIwODk3OTIsImp0aSI6IjAwMWY2YzBkYjQ2YzQ3YTNiNTMxZmQ4Y2E1MzdiOTlhIiwidXNlcl9pZCI6MX0.FToS3Jh7SfXEsYKAXQDey2H4DLuNoBzXNLFDGtPTrB0",
+                    "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY0MjE3NjE5MiwiaWF0IjoxNjQyMDg5NzkyLCJqdGkiOiJmYmRjZDMxY2Y0MDk0MmNjYWRlZmI0YjY0N2IzYTFmMSIsInVzZXJfaWQiOjF9.JfTcXSM_SSG0tBBSE75RabrKJ1f3mdQfl5HbUhB-jfY"
+}
+### POST  /logout/
+ - General:
+
+to logged out a logged in user
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/auth/users/logout/ -X POST -H "Content-Type: application/json" 
+    -H "HTTP_AUTHORIZATION : Bearer $ACCESS_TOKEN" ```
+   
+                 {
+                   
+                    "message": "Your are logged out!"
+                 }
+### POST  /products/
+ - General:
+
+to logged out a logged in user
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/products/ -X POST -H "Content-Type: application/json" 
+    -H "HTTP_AUTHORIZATION : Bearer $ACCESS_TOKEN" -d {"name":"Infinix gy", "price" : 20899} ```
+   
+                 {
+                "id": 1,
+                "seller": {
+                    "id": 2,
+                    "username": "myname"
+                },
+                "name": "Infinix gy",
+                "price": "20899.00000"
+              }
+### GET  /products/
+ - General:
+
+to get all the products ordered by price from the DB
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/products/ -X GET -H "Content-Type: application/json" 
+    -H "HTTP_AUTHORIZATION : Bearer $ACCESS_TOKEN"  ```
+   
+                 [
+                   {
+                       "id": 1,
+                       "seller": {
+                           "id": 2,
+                           "username": "myname"
+                       },
+                       "name": "Infinix gy",
+                       "price": "20899.00000"
+                   }
+]
+### GET  /products/?seller__username=myname
+ - General:
+
+to get all the products filtered by specfic seller ordered by price from the DB
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/products/ -X GET -H "Content-Type: application/json" 
+    -H "HTTP_AUTHORIZATION : Bearer $ACCESS_TOKEN"  ```
+   
+                 [
+                   {
+                       "id": 1,
+                       "seller": {
+                           "id": 2,
+                           "username": "myname"
+                       },
+                       "name": "Infinix gy",
+                       "price": "20899.00000"
+                   }
+]
+### GET  /products/me/
+ - General:
+
+to get all the products that belongs to a specfic user ordered by price from the DB
+
+- Sample: ```curl http://127.0.0.1:8000/api/v1/products/me -X GET -H "Content-Type: application/json" 
+    -H "HTTP_AUTHORIZATION : Bearer $ACCESS_TOKEN"  ```
+   
+              [
+                   {
+                       "id": 1,
+                       "seller": {
+                           "id": 2,
+                           "username": "myname"
+                       },
+                       "name": "Infinix gy",
+                       "price": "20899.00000"
+                   }
+        ]
