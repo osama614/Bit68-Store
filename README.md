@@ -50,8 +50,17 @@ This will install all of the required packages we selected within the `requireme
 #### Running the server
 
 From within the `/Bit68-Store` directory first ensure you are working using your created virtual environment.
+then, 
+Set the environment variables by:
 
-To run the server, execute:
+```bash
+export SECRET_KEY=$YOUR_SECRET_KEY
+export POSTGRES_NAME=$YOUR_POSTGRES_NAME
+export POSTGRES_USER=$YOUR_POSTGRES_USER
+export POSTGRES_PASSWORD=$YOUR_POSTGRES_PASSWORD
+```
+
+then, To run the server, execute:
 
 ```bash
 python manage.py runserver
