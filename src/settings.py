@@ -97,7 +97,7 @@ DATABASES = {
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
         'HOST': 'db',   # Or an IP Address that your DB is hosted on
-        'PORT': '5432',
+        'PORT': 5432,
     }
 }
 # Password validation
